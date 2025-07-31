@@ -22,10 +22,6 @@ dist
 # TypeScript
 *.tsbuildinfo
 
-# IDEs and editors
-.vscode/
-.idea/
-
 # MacOS
 .DS_Store
 

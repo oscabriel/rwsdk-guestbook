@@ -15,9 +15,14 @@
     "typecheck": "tsc --noEmit",
     "preview": "bun build && bun vite preview",
     "infra:up": "bun alchemy deploy",
-    "infra:down": "bun alchemy destroy"
+    "infra:down": "bun alchemy destroy",
+    "db:touch": "wrangler d1 execute DB --local --command='SELECT 1'",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "wrangler d1 migrations apply DB --local",
+    "db:studio": "drizzle-kit studio --config drizzle.config.ts"
   },
   "dependencies": {
+    "drizzle-orm": "^0.44.4",
     "rwsdk": "^0.1.27"
   },
   "devDependencies": {
@@ -26,6 +31,7 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "alchemy": "0.55.3",
+    "drizzle-kit": "^0.31.4",
     "miniflare": "^4.20250617.3",
     "typescript": "^5.8.3",
     "vite": "^6.2.6",
