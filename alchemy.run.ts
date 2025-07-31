@@ -26,6 +26,12 @@ export const worker = await Redwood("website", {
   command: "bun run build",
   bindings: {
     DB: database,
+    BETTER_AUTH_SECRET: alchemy.secret(process.env.BETTER_AUTH_SECRET!),
+    GOOGLE_CLIENT_ID: alchemy.secret(process.env.GOOGLE_CLIENT_ID!),
+    GOOGLE_CLIENT_SECRET: alchemy.secret(process.env.GOOGLE_CLIENT_SECRET!),
+    GITHUB_CLIENT_ID: alchemy.secret(process.env.GITHUB_CLIENT_ID!),
+    GITHUB_CLIENT_SECRET: alchemy.secret(process.env.GITHUB_CLIENT_SECRET!),
+    RESEND_API_KEY: alchemy.secret(process.env.RESEND_API_KEY!),
   },
 });
 
