@@ -1,4 +1,4 @@
-import { AppContext } from "../src/worker";
+import { AppContext } from "@/root/src/worker";
 
 declare module "rwsdk/worker" {
   interface DefaultAppContext extends AppContext {}

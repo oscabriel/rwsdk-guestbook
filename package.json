@@ -2,61 +2,34 @@
   "type": "module",
   "name": "rwsdk-guestbook",
   "version": "1.0.0",
-  "description": "Build fast, server-driven webapps on Cloudflare with SSR, RSC, and realtime. ",
+  "description": "Guestbook app using rwsdk with alchemy",
   "main": "index.js",
   "keywords": [],
-  "author": "",
+  "author": "oscar gabriel",
   "license": "MIT",
   "private": true,
   "scripts": {
+    "dev": "vite dev",
     "build": "vite build",
-    "check": "npm run generate && npm run types",
-    "clean": "npm run clean:vite",
-    "clean:vite": "rm -rf ./node_modules/.vite",
-    "deploy": "alchemy deploy",
-    "destroy": "alchemy destroy",
-    "dev": "alchemy dev",
-    "dev:init": "rw-scripts dev-init",
-    "generate": "rw-scripts ensure-env && prisma generate && wrangler types",
-    "migrate:dev": "prisma generate && wrangler d1 migrations apply DB --local",
-    "migrate:new": "rw-scripts migrate-new",
-    "migrate:prd": "wrangler d1 migrations apply DB --remote",
-    "prepare": "vibe-rules install cursor",
-    "preview": "vite preview",
-    "release": "rw-scripts ensure-deploy-env && npm run clean && prisma generate && RWSDK_DEPLOY=1 npm run build && wrangler deploy",
-    "seed": "npm run worker:run ./src/scripts/seed.ts",
-    "types": "tsc",
-    "worker:run": "rw-scripts worker-run",
-    "postinstall": "vibe-rules install claude-code"
+    "clean": "rm -rf .wrangler && rm -rf node_modules && rm -rf bun.lock",
+    "typecheck": "tsc --noEmit",
+    "preview": "bun build && bun vite preview",
+    "infra:up": "bun alchemy deploy",
+    "infra:down": "bun alchemy destroy"
   },
   "dependencies": {
-    "@prisma/adapter-d1": "~6.8.2",
-    "@prisma/client": "~6.8.2",
-    "@simplewebauthn/browser": "^13.1.0",
-    "@simplewebauthn/server": "^13.1.1",
-    "rwsdk": "0.0.89"
+    "rwsdk": "^0.1.27"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250620.0",
-    "@types/node": "^22.14.0",
+    "@types/node": "^24.1.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "alchemy": "0.55.3",
     "miniflare": "^4.20250617.3",
-    "prisma": "~6.8.2",
     "typescript": "^5.8.3",
-    "vibe-rules": "^0.3.60",
     "vite": "^6.2.6",
     "wrangler": "^4.16.0"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@prisma/client",
-      "@prisma/engines",
-      "esbuild",
-      "prisma",
-      "sharp",
-      "workerd"
-    ]
-  }
+  "packageManager": "bun@1.2.18"
 }

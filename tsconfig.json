@@ -16,11 +16,13 @@
     /* Specify type package names to be included without being referenced in a source file. */
     "types": [
       "@cloudflare/workers-types",
-      "types/**/*.ts"
+      "./types/env.d.ts",
+      "./types/rw.d.ts",
+      "./types/vite.d.ts"
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@generated/*": ["./generated/*"]
+      "@/root/*": ["./*"]
     },
     /* Enable importing .json files */
     "resolveJsonModule": true,
