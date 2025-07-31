@@ -1,13 +1,12 @@
+import { render, route } from "rwsdk/router";
 import { defineApp } from "rwsdk/worker";
-import { route, render } from "rwsdk/router";
+
 import { Document } from "@/app/document/Document";
-import { Home } from "@/app/pages/home";
 import { setCommonHeaders } from "@/app/document/headers";
+import { Home } from "@/app/pages/home";
 
 export default defineApp([
-  setCommonHeaders(),
+	setCommonHeaders(),
 
-  render(Document, [
-    route("/", Home),
-  ]),
+	render(Document, [route("/", Home)]),
 ]);

@@ -12,9 +12,7 @@ export const guestbook_message = sqliteTable(
 			.$defaultFn(() => new Date())
 			.notNull(),
 	},
-	(table) => [
-		index("idx_guestbook_created_at").on(table.createdAt),
-	],
+	(table) => [index("idx_guestbook_created_at").on(table.createdAt)],
 );
 
 export type GuestBookMessage = InferSelectModel<typeof guestbook_message>;
