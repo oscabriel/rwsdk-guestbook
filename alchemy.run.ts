@@ -22,6 +22,7 @@ const database = await D1Database("database", {
 
 export const worker = await Redwood("website", {
   name: `${APP_NAME}-site`,
+  compatibilityDate: "2025-07-30",
   command: "bun run build",
   bindings: {
     DB: database,
