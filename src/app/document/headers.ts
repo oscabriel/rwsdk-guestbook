@@ -25,8 +25,12 @@ export const setCommonHeaders =
 		);
 
 		// Defines trusted sources for content loading and script execution:
+		const scriptSrc = IS_DEV
+			? `'self' 'nonce-${nonce}' 'unsafe-eval' https://challenges.cloudflare.com`
+			: `'self' 'nonce-${nonce}' https://challenges.cloudflare.com`;
+
 		headers.set(
 			"Content-Security-Policy",
-			`default-src 'self'; script-src 'self' 'nonce-${nonce}' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; frame-src https://challenges.cloudflare.com; object-src 'none';`,
+			`default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://challenges.cloudflare.com; object-src 'none';`,
 		);
 	};

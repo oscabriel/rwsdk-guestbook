@@ -18,6 +18,8 @@ export const Document: React.FC<{ children: React.ReactNode }> = ({
 				href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap"
 				rel="stylesheet"
 			/>
+			<script src="/theme-script.js" />
+			<link rel="icon" href="/favicon.svg" />
 			<link rel="modulepreload" href="/src/client.tsx" />
 			<link rel="stylesheet" href={styles} />
 		</head>
