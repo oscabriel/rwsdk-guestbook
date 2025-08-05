@@ -117,9 +117,6 @@
 		border-radius: 0 !important;
 		box-shadow: none !important;
 	}
-	html {
-		scrollbar-gutter: stable;
-	}
 	body {
 		@apply bg-background text-foreground;
 	}

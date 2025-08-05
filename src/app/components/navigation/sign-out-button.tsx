@@ -12,22 +12,17 @@ interface SignOutButtonProps {
 	className?: string;
 	authUrl: string;
 	variant?: "ghost" | "outline";
-	asMenuItem?: boolean;
 }
 
 export function SignOutButton({
 	className,
 	authUrl,
 	variant = "ghost",
-	asMenuItem = false,
 }: SignOutButtonProps) {
 	const [isPending, startTransition] = useTransition();
 	const authClient = setupAuthClient(authUrl);
 
-	const handleSignOut = (e: React.MouseEvent) => {
-		e.preventDefault();
-		e.stopPropagation();
-
+	const handleSignOut = () => {
 		startTransition(async () => {
 			try {
 				const { error } = await authClient.signOut();
@@ -37,8 +32,7 @@ export function SignOutButton({
 					toast.error("Failed to sign out");
 				} else {
 					toast.success("Signed out successfully");
-					// Use window.location.replace to avoid back button issues
-					window.location.replace(link("/sign-in"));
+					window.location.href = link("/sign-in");
 				}
 			} catch (error) {
 				console.error("Error signing out:", error);
@@ -46,20 +40,6 @@ export function SignOutButton({
 			}
 		});
 	};
-
-	if (asMenuItem) {
-		return (
-			<button
-				type="button"
-				onClick={handleSignOut}
-				disabled={isPending}
-				className={`flex w-full items-center px-2 py-1.5 text-sm ${className || ""}`}
-			>
-				<LogOutIcon className="mr-2 size-4" />
-				{isPending ? "Signing out..." : "Sign Out"}
-			</button>
-		);
-	}
 
 	return (
 		<Button

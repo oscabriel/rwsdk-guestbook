@@ -1,13 +1,10 @@
 import type { LayoutProps } from "rwsdk/router";
 
-import { SignOutButton } from "@/app/components/sign-out-button";
-import { Button } from "@/app/components/ui/button";
+import { Header } from "@/app/components/navigation/header";
 import { ClientProviders } from "@/app/providers/client-providers";
 import { link } from "@/lib/utils/links";
 
 export function AppLayout({ children, requestInfo }: LayoutProps) {
-	const ctx = requestInfo?.ctx;
-
 	return (
 		<ClientProviders>
 			<div className="min-h-screen bg-background">
@@ -16,15 +13,7 @@ export function AppLayout({ children, requestInfo }: LayoutProps) {
 						<a href={link("/")} className="font-semibold text-3xl">
 							☁️
 						</a>
-						<div className="flex items-center gap-4">
-							{ctx?.user ? (
-								<SignOutButton authUrl={ctx.authUrl} />
-							) : (
-								<Button asChild>
-									<a href={link("/sign-in")}>Sign In</a>
-								</Button>
-							)}
-						</div>
+						{requestInfo && <Header ctx={requestInfo.ctx} />}
 					</div>
 				</header>
 				<main className="container mx-auto px-6 py-8">{children}</main>
