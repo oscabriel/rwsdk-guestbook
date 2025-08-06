@@ -1,7 +1,7 @@
 /// <reference types="@types/node" />
 
 import alchemy from "alchemy";
-import { D1Database, Redwood } from "alchemy/cloudflare";
+import { D1Database, Redwood, WranglerJson } from "alchemy/cloudflare";
 
 const APP_NAME = "rwsdk-guestbook";
 
@@ -20,10 +20,10 @@ const database = await D1Database("database", {
   },
 });
 
-export const worker = await Redwood("website", {
+export const worker = await Redwood("redwood-app", {
   name: `${APP_NAME}-site`,
+  adopt: true,
   compatibilityDate: "2025-07-30",
-  command: "bun run build",
   bindings: {
     DB: database,
     BETTER_AUTH_SECRET: alchemy.secret(process.env.BETTER_AUTH_SECRET!),
@@ -33,10 +33,21 @@ export const worker = await Redwood("website", {
     GITHUB_CLIENT_SECRET: alchemy.secret(process.env.GITHUB_CLIENT_SECRET!),
     RESEND_API_KEY: alchemy.secret(process.env.RESEND_API_KEY!),
   },
+  domains: [
+    {
+      domainName: process.env.CUSTOM_DOMAIN!,
+      zoneId: process.env.CLOUDFLARE_ZONE_ID!,
+      adopt: true,
+    },
+  ],
+});
+
+await WranglerJson("wrangler", {
+  worker,
 });
 
 console.log({
-  url: worker.url,
+  url: process.env.CUSTOM_DOMAIN,
 });
 
 await app.finalize();

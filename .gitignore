@@ -12,9 +12,9 @@ pnpm-debug.log*
 .dev.vars
 .prod.vars
 .env.local
-.env.development
+.env.dev
 .env.test
-.env.production
+.env.prod
 
 # Vite build output
 dist

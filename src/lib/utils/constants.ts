@@ -1,9 +1,9 @@
 export const EMAIL_FROM_NAME = "RWSDK Guestbook";
-export const EMAIL_FROM_ADDRESS = "noreply@oscargabriel.dev";
+export const EMAIL_FROM_ADDRESS = "noreply@better-cloud.dev";
 
 // Base URL constants for different environments
 export const BASE_URL_DEV = "http://localhost:5173";
-export const BASE_URL_PROD = "https://guestbook.oscargabriel.dev";
+export const BASE_URL_PROD = `https://${process.env.CUSTOM_DOMAIN}`;
 
 // Cache refresh time for session data
 export const SESSION_CACHE_REFRESH_MS = 30_000; // 30 seconds
