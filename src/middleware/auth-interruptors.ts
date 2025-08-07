@@ -11,7 +11,7 @@ export const redirectIfAuth = ({ ctx }: { ctx: AppContext }) => {
 	if (ctx.user) {
 		return new Response(null, {
 			status: 302,
-			headers: { Location: link("/") },
+			headers: { Location: link("/guestbook") },
 		});
 	}
 };

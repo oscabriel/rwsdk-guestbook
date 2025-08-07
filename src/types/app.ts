@@ -17,4 +17,5 @@ export type AppContext = {
 		userAgent?: string | null;
 	};
 	authUrl: string;
+	needsOnboarding?: boolean;
 };

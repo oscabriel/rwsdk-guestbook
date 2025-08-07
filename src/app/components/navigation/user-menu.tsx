@@ -77,7 +77,7 @@ export function UserMenu({ ctx }: UserMenuProps) {
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
 					<DropdownMenuItem asChild className="text-sm">
-						<a href={link("/guestbook")} onClick={() => setIsOpen(false)}>
+						<a href={link("/profile")} onClick={() => setIsOpen(false)}>
 							<UserCircle className="mr-2 h-4 w-4" />
 							Profile
 						</a>

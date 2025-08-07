@@ -1,10 +1,13 @@
 import type { LayoutProps } from "rwsdk/router";
 
+import { OnboardingDialog } from "../pages/guestbook/components/onboarding-dialog";
 import { Header } from "@/app/components/navigation/header";
 import { ClientProviders } from "@/app/providers/client-providers";
 import { link } from "@/lib/utils/links";
 
 export function AppLayout({ children, requestInfo }: LayoutProps) {
+	const ctx = requestInfo?.ctx;
+
 	return (
 		<ClientProviders>
 			<div className="min-h-screen bg-background">
@@ -17,6 +20,11 @@ export function AppLayout({ children, requestInfo }: LayoutProps) {
 					</div>
 				</header>
 				<main className="container mx-auto px-6 py-8">{children}</main>
+
+				{/* Onboarding Dialog */}
+				{ctx?.needsOnboarding && ctx.user && (
+					<OnboardingDialog isOpen={true} userEmail={ctx.user.email} />
+				)}
 			</div>
 		</ClientProviders>
 	);

@@ -1,6 +1,7 @@
 import type { RouteMiddleware } from "rwsdk/router";
 
 import { auth } from "@/lib/auth";
+import { requireOnboarding } from "@/middleware/onboarding-interruptor";
 
 /**
  * Central application middleware that runs on every request.
@@ -28,4 +29,7 @@ export const appMiddleware: RouteMiddleware = async ({ ctx, request }) => {
 	} catch (error) {
 		console.warn("Failed to get session:", error);
 	}
+
+	// Check if user needs onboarding
+	await requireOnboarding({ ctx, request });
 };

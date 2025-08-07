@@ -3,7 +3,7 @@
 import { UserCircle } from "lucide-react";
 import { useState } from "react";
 
-import { SignOutButton } from "@/app/components/sign-out-button";
+import { SignOutButton } from "@/app/components/navigation/sign-out-button";
 import {
 	Avatar,
 	AvatarFallback,
@@ -103,7 +103,7 @@ export function UserMenu({ ctx }: UserMenuProps) {
 				</DropdownMenuGroup>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem className="p-0">
-					<SignOutButton authUrl={ctx.authUrl} asMenuItem />
+					<SignOutButton authUrl={ctx.authUrl} />
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

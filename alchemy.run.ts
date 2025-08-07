@@ -1,7 +1,7 @@
 /// <reference types="@types/node" />
 
 import alchemy from "alchemy";
-import { D1Database, Redwood, WranglerJson } from "alchemy/cloudflare";
+import { D1Database, Redwood, R2Bucket, WranglerJson } from "alchemy/cloudflare";
 
 const APP_NAME = "rwsdk-guestbook";
 
@@ -20,12 +20,19 @@ const database = await D1Database("database", {
   },
 });
 
+const avatarsBucket = await R2Bucket("avatars", {
+  name: `${APP_NAME}-avatars`,
+  adopt: true,
+  dev: { remote: true },
+});
+
 export const worker = await Redwood("redwood-app", {
   name: `${APP_NAME}-site`,
   adopt: true,
   compatibilityDate: "2025-07-30",
   bindings: {
     DB: database,
+    AVATARS_BUCKET: avatarsBucket,
     BETTER_AUTH_SECRET: alchemy.secret(process.env.BETTER_AUTH_SECRET!),
     GOOGLE_CLIENT_ID: alchemy.secret(process.env.GOOGLE_CLIENT_ID!),
     GOOGLE_CLIENT_SECRET: alchemy.secret(process.env.GOOGLE_CLIENT_SECRET!),
