@@ -4,22 +4,42 @@ import path from "node:path";
 /**
  * Used when connecting to local SQLite db during seeding and migrations,
  * or when making queries against the db.
- * @returns Path to most recent .sqlite file in the .wrangler directory
+ * @returns Path to most recent .sqlite file in the .alchemy or .wrangler directory
  */
 export function getLocalSQLiteDBPath() {
 	try {
-		// .wrangler dir and process execution are assumed to be colocated
-		const basePath = path.resolve(".wrangler");
+		// Check for Alchemy database first (used during dev mode)
+		const alchemyPath = path.resolve(".alchemy");
+		const wranglerPath = path.resolve(".wrangler");
 
-		const files = fs
-			.readdirSync(basePath, {
-				encoding: "utf-8",
-				recursive: true,
-			})
-			.filter((fileName) => fileName.endsWith(".sqlite"));
+		// Try Alchemy directory first
+		let basePath = alchemyPath;
+		let files: string[] = [];
+
+		if (fs.existsSync(alchemyPath)) {
+			files = fs
+				.readdirSync(alchemyPath, {
+					encoding: "utf-8",
+					recursive: true,
+				})
+				.filter((fileName) => fileName.endsWith(".sqlite"));
+		}
+
+		// Fall back to Wrangler directory if no Alchemy database found
+		if (!files.length && fs.existsSync(wranglerPath)) {
+			basePath = wranglerPath;
+			files = fs
+				.readdirSync(wranglerPath, {
+					encoding: "utf-8",
+					recursive: true,
+				})
+				.filter((fileName) => fileName.endsWith(".sqlite"));
+		}
 
 		if (!files.length) {
-			throw new Error(`No .sqlite file found at ${basePath}`);
+			throw new Error(
+				`No .sqlite file found at ${alchemyPath} or ${wranglerPath}`,
+			);
 		}
 
 		// Retrieve most recent .sqlite file

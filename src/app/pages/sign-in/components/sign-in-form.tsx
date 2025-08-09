@@ -95,7 +95,7 @@ export function SignInForm({ authUrl }: SignInFormProps) {
 						onRequest: () =>
 							setResult(SIGN_IN_FORM.LOADING_MESSAGES.VERIFYING_OTP),
 						onSuccess: () => {
-							window.location.href = link("/guestbook");
+							window.location.href = link("/");
 						},
 						onError: (ctx) => {
 							setResult(`Error: ${ctx.error.message}`);
@@ -117,7 +117,7 @@ export function SignInForm({ authUrl }: SignInFormProps) {
 		startTransition(() => {
 			authClient.signIn.social({
 				provider,
-				callbackURL: link("/guestbook"),
+				callbackURL: link("/"),
 			});
 		});
 	};

@@ -37,7 +37,7 @@ export function VerificationCodeEmail({ otp }: VerificationCodeEmailProps) {
 			<div class="text">This code will expire in 10 minutes. If you didn't request this code, you can safely ignore this email.</div>
 		</div>
 		<div class="footer">
-			<div class="footer-text">Best regards,<br>Red ☁️</div>
+			<div class="footer-text">Best regards,<br>Oscar Gabriel ☁️</div>
 		</div>
 	</div>
 </body>
@@ -78,7 +78,7 @@ export function DeleteAccountEmail({ url, token }: DeleteAccountEmailProps) {
 			<div class="text">If you didn't request this action, you can safely ignore this email.</div>
 		</div>
 		<div class="footer">
-			<div class="footer-text">Best regards,<br>Red ☁️</div>
+			<div class="footer-text">Best regards,<br>Oscar Gabriel ☁️</div>
 		</div>
 	</div>
 </body>

@@ -70,7 +70,7 @@ export function GuestbookForm({ user }: GuestbookFormProps) {
 		},
 	});
 	return (
-		<Card className="bg-background">
+		<Card className="bg-background mb-8">
 			<CardContent>
 				<form
 					onSubmit={(e) => {

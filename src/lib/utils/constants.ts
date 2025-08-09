@@ -1,9 +1,13 @@
-export const EMAIL_FROM_NAME = "RWSDK Guestbook";
+export const EMAIL_FROM_NAME = "Oscar Gabriel";
 export const EMAIL_FROM_ADDRESS = "noreply@better-cloud.dev";
 
 // Base URL constants for different environments
 export const BASE_URL_DEV = "http://localhost:5173";
 export const BASE_URL_PROD = `https://${process.env.CUSTOM_DOMAIN}`;
+
+// Github Repo URL
+export const GITHUB_REPO_URL = "https://github.com/oscabriel/rwsdk-guestbook";
+export const MAIN_SITE_URL = "https://oscargabriel.dev";
 
 // Cache refresh time for session data
 export const SESSION_CACHE_REFRESH_MS = 30_000; // 30 seconds

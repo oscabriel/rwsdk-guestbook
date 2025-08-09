@@ -1,3 +1,4 @@
+import { ArrowLeft } from "lucide-react";
 import type { RequestInfo } from "rwsdk/worker";
 
 import { DeleteAccountButton } from "./components/delete-account-button";
@@ -8,6 +9,7 @@ import { SignOutButton } from "@/app/components/navigation/sign-out-button";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Separator } from "@/app/components/ui/separator";
 import { auth } from "@/lib/auth";
+import { link } from "@/lib/utils/links";
 
 export async function ProfilePage({ ctx, request }: RequestInfo) {
 	if (!ctx.user) {
@@ -29,14 +31,11 @@ export async function ProfilePage({ ctx, request }: RequestInfo) {
 	const authUrl = `${url.protocol}//${url.host}`;
 
 	return (
-		<div className="container mx-auto max-w-4xl">
-			<div className="space-y-4 sm:space-y-8">
-				{/* Page Header */}
-				<div className="space-y-2 text-center">
-					<h1 className="font-bold text-2xl tracking-tight sm:text-3xl">
-						Profile
-					</h1>
-					<p className="text-muted-foreground text-sm sm:text-base">
+		<div className="bg-background px-4">
+			<div className="mx-auto max-w-3xl">
+				<div className="mb-8">
+					<h1 className="mb-6 font-bold text-5xl">Profile</h1>
+					<p className="mb-6 text-base text-muted-foreground sm:text-lg">
 						Manage your account settings and profile information
 					</p>
 				</div>
@@ -74,6 +73,17 @@ export async function ProfilePage({ ctx, request }: RequestInfo) {
 						</div>
 					</CardContent>
 				</Card>
+
+				{/* Return to Guestbook Link */}
+				<div className="mt-8">
+					<a
+						href={link("/")}
+						className="inline-flex items-center gap-2 text-foreground underline decoration-muted-foreground transition-colors hover:decoration-foreground"
+					>
+						<ArrowLeft className="h-4 w-4" />
+						Return to Guestbook
+					</a>
+				</div>
 			</div>
 		</div>
 	);

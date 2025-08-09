@@ -22,8 +22,7 @@
 		],
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./src/*"],
-			"@/root/*": ["./*"]
+			"@/*": ["./src/*"]
 		},
 		/* Enable importing .json files */
 		"resolveJsonModule": true,

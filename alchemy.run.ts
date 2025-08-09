@@ -13,7 +13,6 @@ const database = await D1Database("database", {
   name: `${APP_NAME}-db`,
   adopt: true,
   migrationsDir: "src/db/migrations",
-  dev: { remote: true },
   primaryLocationHint: "wnam",
   readReplication: {
     mode: "auto",
@@ -23,13 +22,12 @@ const database = await D1Database("database", {
 const avatarsBucket = await R2Bucket("avatars", {
   name: `${APP_NAME}-avatars`,
   adopt: true,
-  dev: { remote: true },
 });
 
 export const worker = await Redwood("redwood-app", {
   name: `${APP_NAME}-site`,
   adopt: true,
-  compatibilityDate: "2025-07-30",
+  compatibilityDate: "2025-08-08",
   bindings: {
     DB: database,
     AVATARS_BUCKET: avatarsBucket,
@@ -38,7 +36,7 @@ export const worker = await Redwood("redwood-app", {
     GOOGLE_CLIENT_SECRET: alchemy.secret(process.env.GOOGLE_CLIENT_SECRET!),
     GITHUB_CLIENT_ID: alchemy.secret(process.env.GITHUB_CLIENT_ID!),
     GITHUB_CLIENT_SECRET: alchemy.secret(process.env.GITHUB_CLIENT_SECRET!),
-    RESEND_API_KEY: alchemy.secret(process.env.RESEND_API_KEY!),
+    RESEND_API_KEY: alchemy.secret(process.env.RESEND_API_KEY || ""),
   },
   domains: [
     {
@@ -54,7 +52,7 @@ await WranglerJson("wrangler", {
 });
 
 console.log({
-  url: process.env.CUSTOM_DOMAIN,
+  url: process.env.CUSTOM_DOMAIN || "http://localhost:5173",
 });
 
 await app.finalize();
