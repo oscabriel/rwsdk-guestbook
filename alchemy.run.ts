@@ -52,7 +52,7 @@ await WranglerJson("wrangler", {
 });
 
 console.log({
-  url: process.env.CUSTOM_DOMAIN || "http://localhost:5173",
+  url: `https://${process.env.CUSTOM_DOMAIN || "http://localhost:5173"}`,
 });
 
 await app.finalize();
