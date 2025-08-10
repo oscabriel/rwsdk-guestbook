@@ -6,7 +6,7 @@ import { apiRoutes } from "@/api/routes";
 import { Document } from "@/app/document/Document";
 import { setCommonHeaders } from "@/app/document/headers";
 import { AppLayout } from "@/app/layouts/app-layout";
-import { Home } from "@/app/pages/home";
+import { HomePage } from "@/app/pages/guestbook/pages/home-page";
 import { NotFound } from "@/app/pages/not-found";
 import { SignIn } from "@/app/pages/sign-in/sign-in-page";
 import { appMiddleware } from "@/middleware/app-middleware";
@@ -23,7 +23,7 @@ export default defineApp([
 
 	render(Document, [
 		layout(AppLayout, [
-			route("/", Home),
+			route("/", HomePage),
 			route("/sign-in", [redirectIfAuth, SignIn]),
 			route("/profile", [requireAuth, ProfilePage]),
 		]),

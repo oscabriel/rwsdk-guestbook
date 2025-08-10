@@ -1,10 +1,10 @@
 import type { RequestInfo } from "rwsdk/worker";
 
+import { Footer } from "@/app/pages/guestbook/components/footer";
 import { GuestbookForm } from "@/app/pages/guestbook/components/guestbook-form";
 import { GuestbookList } from "@/app/pages/guestbook/components/guestbook-list";
 import { getAllGuestbookMessages } from "@/app/pages/guestbook/functions";
 
-// Main Guestbook Page Component
 export async function GuestbookPage({ ctx }: RequestInfo) {
 	const messagesResult = await getAllGuestbookMessages();
 
@@ -17,11 +17,15 @@ export async function GuestbookPage({ ctx }: RequestInfo) {
 						Leave a message and see what others have shared
 					</p>
 				</div>
+
+				{/* Guestbook Form */}
 				<GuestbookForm user={ctx?.user} />
+				{/* Messages List */}
 				<GuestbookList
 					messagesResult={messagesResult}
 					currentUser={ctx?.user}
 				/>
+				<Footer />
 			</div>
 		</div>
 	);

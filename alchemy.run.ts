@@ -51,9 +51,11 @@ await WranglerJson("wrangler", {
   worker,
 });
 
-console.log({
-  url: `https://${process.env.CUSTOM_DOMAIN || "http://localhost:5173"}`,
-});
+if (app.stage === "prod") {
+  console.log({
+    url: `https://${process.env.CUSTOM_DOMAIN}`,
+  });
+}
 
 await app.finalize();
     
