@@ -19,6 +19,7 @@ export const auth = betterAuth({
 		schema: schema,
 	}),
 	secret: env.BETTER_AUTH_SECRET,
+	url: env.BETTER_AUTH_URL,
 	session: {
 		storeSessionInDatabase: true,
 	},
