@@ -114,8 +114,8 @@
 	* {
 		@apply border-border outline-ring/50;
 		font-family: "Geist Mono", monospace;
-		border-radius: 0 !important;
-		box-shadow: none !important;
+		border-radius: 0;
+		box-shadow: none;
 	}
 	body {
 		@apply bg-background text-foreground;
