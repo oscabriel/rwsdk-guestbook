@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { Slot as SlotPrimitive } from "@/lib/utils/radix-ui";
 import * as React from "react";
 
 import { Label } from "@/app/components/ui/label";
 import { cn } from "@/lib/utils/cn";
+import { Slot as SlotPrimitive } from "@/lib/utils/radix-ui";
 import type { FormMessageProps } from "@/types/ui";
 
 // Simple form wrapper - just a div with form styling

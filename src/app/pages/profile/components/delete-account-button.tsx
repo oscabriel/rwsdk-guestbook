@@ -58,7 +58,7 @@ export function DeleteAccountButton({ authUrl }: DeleteAccountButtonProps) {
 		<Dialog open={isOpen} onOpenChange={setIsOpen}>
 			<DialogTrigger asChild>
 				<Button
-					variant="destructiveOutline"
+					variant="destructive"
 					className="flex w-full items-center justify-center space-x-2 text-sm sm:w-auto"
 				>
 					<Trash2 className="h-4 w-4" />

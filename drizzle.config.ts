@@ -2,7 +2,7 @@ import { defineConfig } from "drizzle-kit";
 
 import { getLocalSQLiteDBPath } from "./src/lib/utils/db";
 
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.ALCHEMY_STAGE === "prod";
 
 export default defineConfig({
 	dialect: "sqlite",

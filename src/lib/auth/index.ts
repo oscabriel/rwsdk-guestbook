@@ -53,7 +53,7 @@ export const auth = betterAuth({
 	plugins: [
 		emailOTP({
 			async sendVerificationOTP({ email, otp, type }) {
-				if (process.env.NODE_ENV === "development") {
+				if (process.env.ALCHEMY_STAGE === "dev") {
 					console.log(`Sending ${type} code to ${email}: ${otp}`);
 					return;
 				}
