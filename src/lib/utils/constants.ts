@@ -26,9 +26,9 @@ export const FILE_UPLOAD = {
 } as const;
 
 // Common regex patterns used across the application
-export const NAME_REGEX = /^[a-zA-Z0-9\s\-_.]+$/;
-export const MESSAGE_REGEX = /^[^<>{}]+$/;
-export const COUNTRY_REGEX = /^[a-zA-Z\s\-_.]*$/;
+export const NAME_REGEX = /^[\p{L}0-9\s\-_.]+$/u;
+export const MESSAGE_REGEX = /^[^\p{C}<>{}]+$/u;
+export const COUNTRY_REGEX = /^[\p{L}\s\-_.]*$/u;
 
 // Error messages for regex validation
 export const REGEX_ERROR_MESSAGES = {
