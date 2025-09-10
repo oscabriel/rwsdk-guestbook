@@ -5,7 +5,7 @@ export function Footer() {
 	return (
 		<div className="mt-12 pb-16">
 			<Separator className="my-8" />
-			<p className="text-sm text-muted-foreground">
+			<p className="text-muted-foreground text-sm">
 				This {""}
 				<a href={GITHUB_REPO_URL} className="underline">
 					website

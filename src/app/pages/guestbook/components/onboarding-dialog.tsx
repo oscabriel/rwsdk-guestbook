@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "@tanstack/react-form";
-import { useTransition } from "react";
+import { useId, useTransition } from "react";
 
 import { Button } from "@/app/components/ui/button";
 import {
@@ -70,7 +70,7 @@ export function OnboardingDialog({ isOpen, userEmail }: OnboardingDialogProps) {
 					<div className="space-y-2">
 						<Label htmlFor="email">Email</Label>
 						<Input
-							id="email"
+							id={useId()}
 							name="email"
 							type="email"
 							value={userEmail}

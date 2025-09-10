@@ -166,7 +166,7 @@ export function SessionManager({
 								<Button
 									variant="ghost"
 									size="sm"
-									className="text-xs text-red-500"
+									className="text-red-500 text-xs"
 									onClick={() => handleSessionTerminate(session)}
 									disabled={isPending}
 								>

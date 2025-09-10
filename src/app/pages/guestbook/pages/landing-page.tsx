@@ -14,7 +14,7 @@ export function LandingPage() {
 					</p>
 				</div>
 				<div>
-					<Button asChild size="lg" className="text-lg py-6">
+					<Button asChild size="lg" className="py-6 text-lg">
 						<a href={link("/sign-in")}>Sign In</a>
 					</Button>
 				</div>

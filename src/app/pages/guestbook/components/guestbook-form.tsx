@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "@tanstack/react-form";
-import { useTransition } from "react";
+import { useId, useTransition } from "react";
 import type { RequestInfo } from "rwsdk/worker";
 import { toast } from "sonner";
 
@@ -25,6 +25,10 @@ interface GuestbookFormProps {
 }
 
 export function GuestbookForm({ user }: GuestbookFormProps) {
+	const nameId = useId();
+	const messageId = useId();
+	const countryId = useId();
+
 	const [isPending, startTransition] = useTransition();
 	const currentUser = user;
 
@@ -70,7 +74,7 @@ export function GuestbookForm({ user }: GuestbookFormProps) {
 		},
 	});
 	return (
-		<Card className="bg-background mb-8">
+		<Card className="mb-8 bg-background">
 			<CardContent>
 				<form
 					onSubmit={(e) => {
@@ -84,12 +88,12 @@ export function GuestbookForm({ user }: GuestbookFormProps) {
 					<form.Field name="name">
 						{(field) => (
 							<div className="space-y-2">
-								<Label htmlFor="name">
+								<Label htmlFor={nameId}>
 									Name{" "}
 									{!currentUser && <span className="text-destructive">*</span>}
 								</Label>
 								<Input
-									id="name"
+									id={nameId}
 									name="name"
 									type="text"
 									placeholder={
@@ -116,11 +120,11 @@ export function GuestbookForm({ user }: GuestbookFormProps) {
 					<form.Field name="message">
 						{(field) => (
 							<div className="space-y-2">
-								<Label htmlFor="message">
+								<Label htmlFor={messageId}>
 									Message <span className="text-destructive">*</span>
 								</Label>
 								<Input
-									id="message"
+									id={messageId}
 									name="message"
 									type="text"
 									placeholder="Share your thoughts..."
@@ -147,13 +151,12 @@ export function GuestbookForm({ user }: GuestbookFormProps) {
 									<Select
 										value={field.state.value}
 										onValueChange={(value) => {
-											// Convert "__CLEAR__" value to empty string
 											const actualValue = value === "__CLEAR__" ? "" : value;
 											field.handleChange(actualValue);
 										}}
 										disabled={isPending}
 									>
-										<SelectTrigger id="country">
+										<SelectTrigger id={countryId}>
 											<SelectValue placeholder="Select your country" />
 										</SelectTrigger>
 										<SelectContent>
